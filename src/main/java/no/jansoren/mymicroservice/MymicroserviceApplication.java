@@ -4,10 +4,15 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import no.jansoren.mymicroservice.eventsourcing.EventStore;
+import no.jansoren.mymicroservice.eventsourcing.ShutdownManager;
 import no.jansoren.mymicroservice.health.ActorSystemHealthCheck;
 import no.jansoren.mymicroservice.something.SomethingResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MymicroserviceApplication extends Application<MymicroserviceConfiguration> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MymicroserviceApplication.class);
 
     private EventStore eventStore;
 
@@ -30,6 +35,8 @@ public class MymicroserviceApplication extends Application<MymicroserviceConfigu
         eventStore = new EventStore(configuration);
 
         environment.healthChecks().register("ActorSystemHealthCheck", new ActorSystemHealthCheck(eventStore));
+
+        environment.lifecycle().manage(new ShutdownManager(eventStore));
 
         environment.jersey().register(new SomethingResource(getName()));
     }

@@ -4,8 +4,12 @@ import akka.japi.Procedure;
 import akka.persistence.UntypedPersistentActor;
 import no.jansoren.mymicroservice.monitoring.ApplicationHasStartedEvent;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MymicroservicePersistenceActor extends UntypedPersistentActor {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MymicroservicePersistenceActor.class);
 
     private String persistenceId;
 
@@ -20,12 +24,12 @@ public class MymicroservicePersistenceActor extends UntypedPersistentActor {
 
     @Override
     public void onReceiveRecover(Object msg) throws Exception {
-        System.out.println("onReceiveRecover: " + msg);
+        LOG.debug("onReceiveRecover: " + msg);
     }
 
     @Override
     public void onReceiveCommand(Object msg) throws Exception {
-        System.out.println(msg);
+        LOG.debug("Command: " + msg);
         if (msg instanceof IsRunning) {
             sender().tell(new Yes(), self());
         } else if (msg instanceof Shutdown) {
