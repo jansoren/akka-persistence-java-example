@@ -5,7 +5,6 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.pattern.Patterns;
 import no.jansoren.mymicroservice.MymicroserviceConfiguration;
-import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingPersistenceActor;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
@@ -16,7 +15,7 @@ public class EventStore {
 
     public EventStore(MymicroserviceConfiguration configuration) {
         ActorSystem actorSystem = ActorSystem.create(configuration.getActorSystemName());
-        persistenceActor =  actorSystem.actorOf(Props.create(ApplicationIsStartingPersistenceActor.class, configuration.getApplicationPersistenceId()), configuration.getPersistenceActorName());
+        persistenceActor =  actorSystem.actorOf(Props.create(MymicroservicePersistenceActor.class, configuration.getApplicationPersistenceId()), configuration.getPersistenceActorName());
     }
 
     public ActorRef getPersistenceActor() {

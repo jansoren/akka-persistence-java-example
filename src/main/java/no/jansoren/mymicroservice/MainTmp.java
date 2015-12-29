@@ -9,14 +9,14 @@ import akka.persistence.query.journal.leveldb.javadsl.LeveldbReadJournal;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Source;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
-import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingPersistenceActor;
+import no.jansoren.mymicroservice.eventsourcing.MymicroservicePersistenceActor;
 import scala.runtime.BoxedUnit;
 
 public class MainTmp {
 
     public static void main(String... args) throws Exception {
         ActorSystem system = ActorSystem.create("example");
-        ActorRef persistentActor = system.actorOf(Props.create(ApplicationIsStartingPersistenceActor.class, "sample-id-1"), "persistentActor-4-java");
+        ActorRef persistentActor = system.actorOf(Props.create(MymicroservicePersistenceActor.class, "sample-id-1"), "persistentActor-4-java");
 
         persistentActor.tell(new ApplicationIsStartingCommand(), null);
 

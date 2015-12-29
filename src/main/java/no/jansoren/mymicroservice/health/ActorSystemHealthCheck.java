@@ -2,7 +2,8 @@ package no.jansoren.mymicroservice.health;
 
 import com.codahale.metrics.health.HealthCheck;
 import no.jansoren.mymicroservice.eventsourcing.EventStore;
-import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
+import no.jansoren.mymicroservice.eventsourcing.IsRunning;
+import no.jansoren.mymicroservice.eventsourcing.Yes;
 
 public class ActorSystemHealthCheck extends HealthCheck {
 
@@ -15,10 +16,13 @@ public class ActorSystemHealthCheck extends HealthCheck {
     @Override
     protected Result check() throws Exception {
         try {
-            Object ask = eventStore.ask(new ApplicationIsStartingCommand());
-            return Result.healthy();
+            Object askIsRunning = eventStore.ask(new IsRunning());
+            if(askIsRunning instanceof Yes) {
+                return Result.healthy();
+            }
+            return Result.unhealthy("EventStore is not running properly. " + askIsRunning);
         } catch (Exception e) {
-            return Result.unhealthy("EventStore did not respond within 3 seconds");
+            return Result.unhealthy("EventStore did not respond within 3 seconds. " + e.getMessage());
         }
     }
 }

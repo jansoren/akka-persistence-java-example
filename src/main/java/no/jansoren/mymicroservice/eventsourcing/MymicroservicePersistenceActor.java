@@ -1,14 +1,15 @@
-package no.jansoren.mymicroservice.monitoring;
+package no.jansoren.mymicroservice.eventsourcing;
 
 import akka.japi.Procedure;
 import akka.persistence.UntypedPersistentActor;
+import no.jansoren.mymicroservice.monitoring.ApplicationHasStartedEvent;
+import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
 
-public class ApplicationIsStartingPersistenceActor extends UntypedPersistentActor {
+public class MymicroservicePersistenceActor extends UntypedPersistentActor {
 
     private String persistenceId;
-    
 
-    public ApplicationIsStartingPersistenceActor(String persistenceId) {
+    public MymicroservicePersistenceActor(String persistenceId) {
         this.persistenceId = persistenceId;
     }
 
@@ -25,7 +26,11 @@ public class ApplicationIsStartingPersistenceActor extends UntypedPersistentActo
     @Override
     public void onReceiveCommand(Object msg) throws Exception {
         System.out.println(msg);
-        if (msg instanceof ApplicationIsStartingCommand) {
+        if (msg instanceof IsRunning) {
+            sender().tell(new Yes(), self());
+        } else if (msg instanceof Shutdown) {
+            context().stop(self());
+        } else if (msg instanceof ApplicationIsStartingCommand) {
             ApplicationHasStartedEvent event = new ApplicationHasStartedEvent();
             persist(event, new Procedure<ApplicationHasStartedEvent>() {
                 @Override
@@ -42,12 +47,13 @@ public class ApplicationIsStartingPersistenceActor extends UntypedPersistentActo
         } else if (msg.equals("snap")) {
             // IMPORTANT: create a copy of snapshot
             // because ExampleState is mutable !!!
-           // saveSnapshot(state.copy());
+            // saveSnapshot(state.copy());
         } else if (msg.equals("print")) {
-           // System.out.println(state);
+            // System.out.println(state);
         } else {
             unhandled(msg);
         }
+
     }
 
 
