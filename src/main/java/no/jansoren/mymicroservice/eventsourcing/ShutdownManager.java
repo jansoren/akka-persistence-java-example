@@ -16,7 +16,7 @@ public class ShutdownManager implements Managed {
 
     @Override
     public void start() throws Exception {
-
+        
     }
 
     @Override

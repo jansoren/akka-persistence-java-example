@@ -1,4 +1,6 @@
 package no.jansoren.mymicroservice.something;
 
-public class DoSomethingCommand {
+import no.jansoren.mymicroservice.eventsourcing.Command;
+
+public class DoSomethingCommand extends Command {
 }

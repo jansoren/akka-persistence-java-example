@@ -1,4 +1,6 @@
 package no.jansoren.mymicroservice.something;
 
-public class SomethingElseDoneEvent {
+import no.jansoren.mymicroservice.eventsourcing.Event;
+
+public class SomethingElseDoneEvent extends Event {
 }

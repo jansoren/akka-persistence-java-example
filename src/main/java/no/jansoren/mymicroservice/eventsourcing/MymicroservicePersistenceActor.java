@@ -4,6 +4,10 @@ import akka.japi.Procedure;
 import akka.persistence.UntypedPersistentActor;
 import no.jansoren.mymicroservice.monitoring.ApplicationHasStartedEvent;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
+import no.jansoren.mymicroservice.something.DoSomethingCommand;
+import no.jansoren.mymicroservice.something.DoSomethingElseCommand;
+import no.jansoren.mymicroservice.something.SomethingDoneEvent;
+import no.jansoren.mymicroservice.something.SomethingElseDoneEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +49,20 @@ public class MymicroservicePersistenceActor extends UntypedPersistentActor {
                     if (event.equals(event1)) {
                         getContext().system().eventStream().publish(event1);
                     }
+
+                }
+            });
+        } else if (msg instanceof DoSomethingCommand) {
+            persist(new SomethingDoneEvent(), new Procedure<SomethingDoneEvent>() {
+                @Override
+                public void apply(SomethingDoneEvent event) throws Exception {
+                    getContext().system().eventStream().publish(event);
+                }
+            });
+        } else if (msg instanceof DoSomethingElseCommand) {
+            persist(new SomethingElseDoneEvent(), new Procedure<SomethingElseDoneEvent>() {
+                @Override
+                public void apply(SomethingElseDoneEvent event) throws Exception {
 
                 }
             });
