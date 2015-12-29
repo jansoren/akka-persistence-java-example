@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,13 +27,15 @@ public class SomethingResource {
 
     @GET
     @Path("/dosomething")
-    public void doSomething() {
+    public Response doSomething() {
         eventStore.tell(new DoSomethingCommand(), null);
+        return Response.ok().build();
     }
 
     @GET
     @Path("/dosomethingelse")
-    public void doSomethingElse() {
+    public Response doSomethingElse() {
         eventStore.tell(new DoSomethingElseCommand(), null);
+        return Response.ok().build();
     }
 }
