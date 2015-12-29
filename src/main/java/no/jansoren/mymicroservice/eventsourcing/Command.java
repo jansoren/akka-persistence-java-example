@@ -1,4 +1,4 @@
-package akka.persistence.eventsourcing;
+package no.jansoren.mymicroservice.eventsourcing;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package no.jansoren.mymicroservice.resources;
+package no.jansoren.mymicroservice.something;
 
 import com.codahale.metrics.annotation.Timed;
 import javax.ws.rs.GET;
@@ -8,11 +8,11 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
-public class MymicroserviceResource {
+public class SomethingResource {
 
     private String applicationName;
 
-    public MymicroserviceResource(String applicationName) {
+    public SomethingResource(String applicationName) {
         this.applicationName = applicationName;
     }
 

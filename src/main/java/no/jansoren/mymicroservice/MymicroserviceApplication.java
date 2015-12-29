@@ -1,17 +1,15 @@
 package no.jansoren.mymicroservice;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
-import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingPersistenceActor;
+import no.jansoren.mymicroservice.eventsourcing.EventStore;
+import no.jansoren.mymicroservice.health.ActorSystemHealthCheck;
+import no.jansoren.mymicroservice.something.SomethingResource;
 
 public class MymicroserviceApplication extends Application<MymicroserviceConfiguration> {
 
-    private ActorRef persistenceActor;
+    private EventStore eventStore;
 
     public static void main(final String[] args) throws Exception {
         new MymicroserviceApplication().run(args);
@@ -29,14 +27,10 @@ public class MymicroserviceApplication extends Application<MymicroserviceConfigu
 
     @Override
     public void run(final MymicroserviceConfiguration configuration, final Environment environment) {
-        persistenceActor = createPersistenceActor(configuration);
+        eventStore = new EventStore(configuration);
 
-        persistenceActor.tell(new ApplicationIsStartingCommand(), null);
+        environment.healthChecks().register("ActorSystemHealthCheck", new ActorSystemHealthCheck(eventStore));
+
+        environment.jersey().register(new SomethingResource(getName()));
     }
-
-    private ActorRef createPersistenceActor(MymicroserviceConfiguration configuration) {
-        ActorSystem actorSystem = ActorSystem.create(configuration.getActorSystemName());
-        return actorSystem.actorOf(Props.create(ApplicationIsStartingPersistenceActor.class, configuration.getApplicationPersistenceId()), configuration.getPersistenceActorName());
-    }
-
 }

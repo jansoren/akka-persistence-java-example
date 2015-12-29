@@ -6,6 +6,7 @@ import akka.persistence.UntypedPersistentActor;
 public class ApplicationIsStartingPersistenceActor extends UntypedPersistentActor {
 
     private String persistenceId;
+    
 
     public ApplicationIsStartingPersistenceActor(String persistenceId) {
         this.persistenceId = persistenceId;
