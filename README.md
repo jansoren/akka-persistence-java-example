@@ -1,5 +1,13 @@
 # Mymicroservice
 
+This is an example application implemented using:
+- [Akka Persistence](http://doc.akka.io/docs/akka/snapshot/scala/persistence.html)
+- [Dropwizard](http://www.dropwizard.io/)
+
+If you find the example helpful, and maybe learned something new, please give it a star. 
+If you have improvement suggestions please create an [issue](https://github.com/jansoren/akka-persistence-java-example/issues) or 
+a pull request. Enjoy :-)
+
 ## How to start the Mymicroservice application
 
 1. Run `mvn clean install` to build your application
