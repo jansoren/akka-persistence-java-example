@@ -4,6 +4,7 @@ import akka.persistence.UntypedPersistentActor;
 
 import java.lang.reflect.ParameterizedType;
 
+@Deprecated // this class was an idea of a solution. Remove when example milestone is finished
 public abstract class CommandHandler<T> extends UntypedPersistentActor {
     @Override
     public void onReceiveRecover(Object msg) throws Exception {

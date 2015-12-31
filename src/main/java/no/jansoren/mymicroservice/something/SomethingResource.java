@@ -38,4 +38,28 @@ public class SomethingResource {
         eventStore.tell(new DoSomethingElseCommand(), null);
         return Response.ok().build();
     }
+/*
+    @GET
+    @Path("/something")
+    public int getSomething() {
+
+
+        eventStore.tell(new DoSomethingCommand(), null);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/somethingelse")
+    public Response getSomethingElse() {
+        eventStore.tell(new DoSomethingElseCommand(), null);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/somethingboth")
+    public Response getSomethingBoth() {
+        eventStore.tell(new DoSomethingElseCommand(), null);
+        return Response.ok().build();
+    }
+   */
 }
