@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 public class MymicroserviceApplication extends Application<MymicroserviceConfiguration> {
 
     private static final Logger LOG = LoggerFactory.getLogger(MymicroserviceApplication.class);
+    public static final String APPLICATION_NAME = "Mymicroservice";
 
     private EventStore eventStore;
 
@@ -25,7 +26,7 @@ public class MymicroserviceApplication extends Application<MymicroserviceConfigu
 
     @Override
     public String getName() {
-        return "Mymicroservice";
+        return APPLICATION_NAME;
     }
 
     @Override
