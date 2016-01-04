@@ -1,4 +1,4 @@
-package no.jansoren.mymicroservice.something;
+package no.jansoren.mymicroservice.somethingelse;
 
 import no.jansoren.mymicroservice.eventsourcing.EventHandler;
 import no.jansoren.mymicroservice.eventsourcing.Projection;
@@ -12,4 +12,7 @@ public class SomethingElseProjection extends Projection {
         somethingElseDoneCounter++;
     }
 
+    public int getSomethingElseDoneCounter() {
+        return somethingElseDoneCounter;
+    }
 }

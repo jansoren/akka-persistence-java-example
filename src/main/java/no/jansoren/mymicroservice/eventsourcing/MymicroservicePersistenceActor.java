@@ -5,9 +5,9 @@ import akka.persistence.UntypedPersistentActor;
 import no.jansoren.mymicroservice.monitoring.ApplicationHasStartedEvent;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
 import no.jansoren.mymicroservice.something.DoSomethingCommand;
-import no.jansoren.mymicroservice.something.DoSomethingElseCommand;
+import no.jansoren.mymicroservice.somethingelse.DoSomethingElseCommand;
 import no.jansoren.mymicroservice.something.SomethingDoneEvent;
-import no.jansoren.mymicroservice.something.SomethingElseDoneEvent;
+import no.jansoren.mymicroservice.somethingelse.SomethingElseDoneEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,40 +43,23 @@ public class MymicroservicePersistenceActor extends UntypedPersistentActor {
             persist(event, new Procedure<ApplicationHasStartedEvent>() {
                 @Override
                 public void apply(ApplicationHasStartedEvent event1) throws Exception {
-
-                    //state.update(event1);
-
-                    if (event.equals(event1)) {
-                        getContext().system().eventStream().publish(event1);
-                    }
-
                 }
             });
         } else if (msg instanceof DoSomethingCommand) {
             persist(new SomethingDoneEvent(), new Procedure<SomethingDoneEvent>() {
                 @Override
                 public void apply(SomethingDoneEvent event) throws Exception {
-                    getContext().system().eventStream().publish(event);
                 }
             });
         } else if (msg instanceof DoSomethingElseCommand) {
             persist(new SomethingElseDoneEvent(), new Procedure<SomethingElseDoneEvent>() {
                 @Override
                 public void apply(SomethingElseDoneEvent event) throws Exception {
-
                 }
             });
-        } else if (msg.equals("snap")) {
-            // IMPORTANT: create a copy of snapshot
-            // because ExampleState is mutable !!!
-            // saveSnapshot(state.copy());
-        } else if (msg.equals("print")) {
-            // System.out.println(state);
         } else {
             unhandled(msg);
         }
 
     }
-
-
 }

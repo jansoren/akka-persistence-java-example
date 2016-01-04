@@ -3,7 +3,7 @@ package no.jansoren.mymicroservice.eventsourcing;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Event implements Serializable {
+public abstract class Event implements Serializable {
 
     private LocalDateTime created;
 
@@ -14,4 +14,6 @@ public class Event implements Serializable {
     public LocalDateTime getCreated() {
         return created;
     }
+
+    public abstract String getDescription();
 }

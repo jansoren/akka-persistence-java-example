@@ -7,7 +7,9 @@ import no.jansoren.mymicroservice.eventsourcing.EventStore;
 import no.jansoren.mymicroservice.eventsourcing.ShutdownManager;
 import no.jansoren.mymicroservice.health.ActorSystemHealthCheck;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
+import no.jansoren.mymicroservice.monitoring.MonitoringResource;
 import no.jansoren.mymicroservice.something.SomethingResource;
+import no.jansoren.mymicroservice.somethingelse.SomethingElseResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +41,10 @@ public class MymicroserviceApplication extends Application<MymicroserviceConfigu
 
         environment.lifecycle().manage(new ShutdownManager(eventStore));
 
-        environment.jersey().register(new SomethingResource(getName(), eventStore));
+        environment.jersey().register(new MymicroserviceResource(getName()));
+        environment.jersey().register(new MonitoringResource(eventStore));
+        environment.jersey().register(new SomethingResource(eventStore));
+        environment.jersey().register(new SomethingElseResource(eventStore));
 
         eventStore.tell(new ApplicationIsStartingCommand(), null);
     }

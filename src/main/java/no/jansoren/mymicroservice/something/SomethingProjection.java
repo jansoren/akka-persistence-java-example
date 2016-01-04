@@ -12,4 +12,7 @@ public class SomethingProjection extends Projection {
         somethingDoneCounter++;
     }
 
+    public int getSomethingDoneCounter() {
+        return somethingDoneCounter;
+    }
 }

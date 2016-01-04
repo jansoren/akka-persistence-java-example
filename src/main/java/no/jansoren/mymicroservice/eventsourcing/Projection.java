@@ -32,13 +32,13 @@ public class Projection {
         }
     }
 
-    public static Method findHandleEventMethod(Map<Class<? extends Event>, Method> handlers, Event event) {
+    private static Method findHandleEventMethod(Map<Class<? extends Event>, Method> handlers, Event event) {
         Method method = null;
 
-        Class<?> theclass = event.getClass();
-        while (method == null && theclass != Object.class){
-            method = handlers.get(theclass);
-            theclass = theclass.getSuperclass();
+        Class<?> theClass = event.getClass();
+        while (method == null && theClass != Object.class){
+            method = handlers.get(theClass);
+            theClass = theClass.getSuperclass();
         }
         return method;
     }

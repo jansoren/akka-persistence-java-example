@@ -1,4 +1,4 @@
-package no.jansoren.mymicroservice.something;
+package no.jansoren.mymicroservice.somethingelse;
 
 import no.jansoren.mymicroservice.eventsourcing.Command;
 

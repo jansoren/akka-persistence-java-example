@@ -8,58 +8,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/")
+@Path("/something")
 @Produces(MediaType.APPLICATION_JSON)
 public class SomethingResource {
 
-    private String applicationName;
     private EventStore eventStore;
 
-    public SomethingResource(String applicationName, EventStore eventStore) {
-        this.applicationName = applicationName;
+    public SomethingResource(EventStore eventStore) {
         this.eventStore = eventStore;
     }
 
     @GET
-    public String welcomeMessage() {
-        return "You are now prepared to implement your dropwizard " + applicationName + " application. Have fun :-)";
-    }
-
-    @GET
-    @Path("/dosomething")
+    @Path("/do")
     public Response doSomething() {
         eventStore.tell(new DoSomethingCommand(), null);
         return Response.ok().build();
     }
 
     @GET
-    @Path("/dosomethingelse")
-    public Response doSomethingElse() {
-        eventStore.tell(new DoSomethingElseCommand(), null);
-        return Response.ok().build();
-    }
-/*
-    @GET
-    @Path("/something")
-    public int getSomething() {
-
-
-        eventStore.tell(new DoSomethingCommand(), null);
-        return Response.ok().build();
+    @Path("/get")
+    public Response getSomething() {
+        SomethingProjection projection = eventStore.getProjection(SomethingProjection.class);
+        int somethingDoneCounter = projection.getSomethingDoneCounter();
+        return Response.ok(somethingDoneCounter).build();
     }
 
-    @GET
-    @Path("/somethingelse")
-    public Response getSomethingElse() {
-        eventStore.tell(new DoSomethingElseCommand(), null);
-        return Response.ok().build();
-    }
-
-    @GET
-    @Path("/somethingboth")
-    public Response getSomethingBoth() {
-        eventStore.tell(new DoSomethingElseCommand(), null);
-        return Response.ok().build();
-    }
-   */
 }
