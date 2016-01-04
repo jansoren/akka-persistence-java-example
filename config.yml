@@ -1,9 +1,8 @@
-actorSystemName: MymicroserviceActorSystem
 persistenceActorName: MymicroservicePersistenceActor
 applicationPersistenceId: MymicroservicePersistenceId
-
 
 logging:
   level: INFO
   loggers:
     no.jansoren: DEBUG
+    akka.persistence: INFO

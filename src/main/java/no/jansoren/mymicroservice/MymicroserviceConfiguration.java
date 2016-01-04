@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class MymicroserviceConfiguration extends Configuration {
 
     @NotEmpty
-    private String actorSystemName;
+    private String actorSystemName = MymicroserviceApplication.APPLICATION_NAME;
 
     @NotEmpty
     private String persistenceActorName;
