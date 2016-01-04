@@ -10,12 +10,18 @@ import akka.persistence.query.journal.leveldb.javadsl.LeveldbReadJournal;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Source;
 import no.jansoren.mymicroservice.MymicroserviceConfiguration;
+import no.jansoren.mymicroservice.monitoring.EventLogProjection;
+import no.jansoren.mymicroservice.something.SomethingElseProjection;
+import no.jansoren.mymicroservice.something.SomethingProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 import scala.runtime.BoxedUnit;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventStore {
 
@@ -31,7 +37,19 @@ public class EventStore {
         readJournal = PersistenceQuery.get(actorSystem).getReadJournalFor(LeveldbReadJournal.class, LeveldbReadJournal.Identifier());
 
         Source<EventEnvelope, BoxedUnit> source = readJournal.eventsByPersistenceId(configuration.getApplicationPersistenceId(), 0, Long.MAX_VALUE);
-        source.runForeach(event -> System.out.println("Event: " + event), ActorMaterializer.create(actorSystem));
+
+        List<Projection> projections = new ArrayList<>();
+        projections.add(new EventLogProjection());
+        projections.add(new SomethingProjection());
+        projections.add(new SomethingElseProjection());
+
+        source.runForeach(eventEnvelope -> {
+            System.out.println("Event: " + eventEnvelope);
+            Event event = (Event)eventEnvelope.event();
+            for(Projection projection : projections) {
+                projection.handleEvent(event);
+            }
+        }, ActorMaterializer.create(actorSystem));
     }
 
     public ActorRef getPersistenceActor() {

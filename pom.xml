@@ -23,6 +23,7 @@
 
         <akka.version>2.4.1</akka.version>
         <dropwizard.version>0.9.1</dropwizard.version>
+        <junit.version>4.12</junit.version>
         <leveldb.version>0.7</leveldb.version>
         <leveldbjni-all.version>1.8</leveldbjni-all.version>
 
@@ -76,6 +77,12 @@
             <groupId>org.fusesource.leveldbjni</groupId>
             <artifactId>leveldbjni-all</artifactId>
             <version>${leveldbjni-all.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
