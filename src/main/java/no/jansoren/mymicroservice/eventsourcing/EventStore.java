@@ -1,5 +1,6 @@
 package no.jansoren.mymicroservice.eventsourcing;
 
+import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -38,7 +39,7 @@ public class EventStore {
         readJournal = PersistenceQuery.get(actorSystem).getReadJournalFor(LeveldbReadJournal.class, LeveldbReadJournal.Identifier());
         projections = initializeProjections();
 
-        Source<EventEnvelope, BoxedUnit> source = readJournal.eventsByPersistenceId(configuration.getApplicationPersistenceId(), 0, Long.MAX_VALUE);
+        Source<EventEnvelope, NotUsed> source = readJournal.eventsByPersistenceId(configuration.getApplicationPersistenceId(), 0, Long.MAX_VALUE);
         source.runForeach(eventEnvelope -> {
             Event event = (Event) eventEnvelope.event();
             projections.forEach((projectionName, projection)->projection.handleEvent(event));
