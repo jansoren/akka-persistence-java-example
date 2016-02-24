@@ -60,11 +60,11 @@ public class MymicroservicePersistenceActor extends AbstractPersistentActor {
 
     private void handleCommand(ApplicationIsStartingCommand command) {
         persistAsync(new ApplicationHasStartedEvent(), event -> {
-            
+
         });
     }
 
-    private void handleCommand(Command command) {
+    private void handleCommand(DoSomethingCommand command) {
         persistAsync(new SomethingDoneEvent(), event -> {
 
         });
