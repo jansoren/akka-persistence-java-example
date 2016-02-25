@@ -1,6 +1,6 @@
 package no.jansoren.mymicroservice.monitoring;
 
-import no.jansoren.mymicroservice.eventsourcing.Event;
+import no.jansoren.akka.persistence.eventsourcing.Event;
 
 public class ApplicationHasStartedEvent extends Event {
 

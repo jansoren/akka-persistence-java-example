@@ -1,7 +1,7 @@
 package no.jansoren.mymicroservice.somethingelse;
 
-import no.jansoren.mymicroservice.eventsourcing.EventHandler;
-import no.jansoren.mymicroservice.eventsourcing.Projection;
+import no.jansoren.akka.persistence.eventsourcing.EventHandler;
+import no.jansoren.akka.persistence.eventsourcing.Projection;
 
 public class SomethingElseProjection extends Projection {
 

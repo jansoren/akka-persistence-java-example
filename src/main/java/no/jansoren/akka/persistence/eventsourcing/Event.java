@@ -1,4 +1,4 @@
-package no.jansoren.mymicroservice.eventsourcing;
+package no.jansoren.akka.persistence.eventsourcing;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,6 +1,7 @@
 package no.jansoren.mymicroservice.eventsourcing;
 
 import io.dropwizard.lifecycle.Managed;
+import no.jansoren.akka.persistence.eventsourcing.Shutdown;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

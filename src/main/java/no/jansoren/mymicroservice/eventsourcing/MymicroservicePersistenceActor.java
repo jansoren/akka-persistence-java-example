@@ -1,7 +1,12 @@
 package no.jansoren.mymicroservice.eventsourcing;
 
 import akka.japi.pf.ReceiveBuilder;
+import akka.japi.pf.UnitPFBuilder;
 import akka.persistence.AbstractPersistentActor;
+import no.jansoren.akka.persistence.eventsourcing.EventSourcedPersistenceActor;
+import no.jansoren.akka.persistence.eventsourcing.IsRunning;
+import no.jansoren.akka.persistence.eventsourcing.Shutdown;
+import no.jansoren.akka.persistence.eventsourcing.Yes;
 import no.jansoren.mymicroservice.monitoring.ApplicationHasStartedEvent;
 import no.jansoren.mymicroservice.monitoring.ApplicationIsStartingCommand;
 import no.jansoren.mymicroservice.something.DoSomethingCommand;
@@ -13,49 +18,21 @@ import org.slf4j.LoggerFactory;
 import scala.PartialFunction;
 import scala.runtime.BoxedUnit;
 
-public class MymicroservicePersistenceActor extends AbstractPersistentActor {
+public class MymicroservicePersistenceActor extends EventSourcedPersistenceActor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MymicroservicePersistenceActor.class);
 
-    private String persistenceId;
-
     public MymicroservicePersistenceActor(String persistenceId) {
-        this.persistenceId = persistenceId;
+        super(persistenceId);
     }
 
     @Override
-    public String persistenceId() {
-        return persistenceId;
-    }
-
-    @Override
-    public PartialFunction<Object, BoxedUnit> receiveRecover() {
-        LOG.debug("receiveRecover");
-        return buildReceiver();
-    }
-
-    @Override
-    public PartialFunction<Object, BoxedUnit> receiveCommand() {
-        LOG.debug("receiveCommand");
-        return buildReceiver();
-    }
-
-    private PartialFunction<Object, BoxedUnit> buildReceiver() {
-        return ReceiveBuilder
-                .match(IsRunning.class, this::handleCommand)
-                .match(Shutdown.class, this::handleCommand)
+    protected PartialFunction<Object, BoxedUnit> buildReceiver(UnitPFBuilder<Object> defaultMatches) {
+        return defaultMatches
                 .match(ApplicationIsStartingCommand.class, this::handleCommand)
                 .match(DoSomethingCommand.class, this::handleCommand)
                 .match(DoSomethingElseCommand.class, this::handleCommand)
                 .build();
-    }
-
-    private void handleCommand(IsRunning command) {
-        sender().tell(new Yes(), self());
-    }
-
-    private void handleCommand(Shutdown command) {
-        context().stop(self());
     }
 
     private void handleCommand(ApplicationIsStartingCommand command) {

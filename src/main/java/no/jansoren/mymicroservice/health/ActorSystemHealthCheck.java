@@ -2,8 +2,8 @@ package no.jansoren.mymicroservice.health;
 
 import com.codahale.metrics.health.HealthCheck;
 import no.jansoren.mymicroservice.eventsourcing.EventStore;
-import no.jansoren.mymicroservice.eventsourcing.IsRunning;
-import no.jansoren.mymicroservice.eventsourcing.Yes;
+import no.jansoren.akka.persistence.eventsourcing.IsRunning;
+import no.jansoren.akka.persistence.eventsourcing.Yes;
 
 public class ActorSystemHealthCheck extends HealthCheck {
 

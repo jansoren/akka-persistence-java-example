@@ -1,7 +1,7 @@
 package no.jansoren.mymicroservice.monitoring;
 
-import no.jansoren.mymicroservice.eventsourcing.EventHandler;
-import no.jansoren.mymicroservice.eventsourcing.Projection;
+import no.jansoren.akka.persistence.eventsourcing.EventHandler;
+import no.jansoren.akka.persistence.eventsourcing.Projection;
 import no.jansoren.mymicroservice.something.SomethingDoneEvent;
 import no.jansoren.mymicroservice.somethingelse.SomethingElseDoneEvent;
 

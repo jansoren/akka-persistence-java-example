@@ -10,6 +10,8 @@ import akka.persistence.query.PersistenceQuery;
 import akka.persistence.query.journal.leveldb.javadsl.LeveldbReadJournal;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Source;
+import no.jansoren.akka.persistence.eventsourcing.Event;
+import no.jansoren.akka.persistence.eventsourcing.Projection;
 import no.jansoren.mymicroservice.MymicroserviceConfiguration;
 import no.jansoren.mymicroservice.monitoring.EventLogProjection;
 import no.jansoren.mymicroservice.somethingelse.SomethingElseProjection;
@@ -19,7 +21,6 @@ import org.slf4j.LoggerFactory;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
-import scala.runtime.BoxedUnit;
 
 import java.util.HashMap;
 import java.util.Map;
