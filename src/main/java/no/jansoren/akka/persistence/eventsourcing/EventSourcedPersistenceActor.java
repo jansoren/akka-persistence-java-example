@@ -46,10 +46,12 @@ public abstract class EventSourcedPersistenceActor extends AbstractPersistentAct
     }
 
     private void handleCommand(IsRunning command) {
+        LOG.info("Checking if actor system is running");
         sender().tell(new Yes(), self());
     }
 
     private void handleCommand(Shutdown command) {
+        LOG.info("Shutting down actor system");
         context().stop(self());
     }
 }
