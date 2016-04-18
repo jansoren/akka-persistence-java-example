@@ -145,7 +145,8 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>-->
+            </plugin>
+-->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
@@ -154,7 +155,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-           <!-- <plugin>
+<!--
+            <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>${maven-source-plugin.version}</version>
                 <executions>
@@ -183,7 +185,8 @@
                 <artifactId>dropwizard-codegen-maven-plugin</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
                 <configuration>
-                    <targetFolder>/target-folder</targetFolder>
+                    <packageToScan>no.jansoren</packageToScan>
+                    <generatedCodeFolder>/target-folder</generatedCodeFolder>
                 </configuration>
                 <executions>
                     <execution>
