@@ -186,7 +186,9 @@
                 <version>1.0.0-SNAPSHOT</version>
                 <configuration>
                     <packageToScan>no.jansoren</packageToScan>
-                    <generatedCodeFolder>../akka-persistren/target-folder</generatedCodeFolder>
+                    <generatedCodeFolder>mymicroservice-server-qtest/src/main/java</generatedCodeFolder>
+                    <generatedCodePackage>no.jansoren.mymicroservice.qtest.services</generatedCodePackage>
+                    <rootHost>http://localhost:8080</rootHost>
                 </configuration>
                 <executions>
                     <execution>
