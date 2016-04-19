@@ -10,21 +10,16 @@
     </prerequisites>
 
     <groupId>no.jansoren</groupId>
-    <artifactId>mymicroservice-parent</artifactId>
+    <artifactId>mymicroservice-server-qtest</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <name>Mymicroservice Qualitytests</name>
 
-    <name>Mymicroservice Parent</name>
-
-    <modules>
-        <module>mymicroservice-server</module>
-    </modules>
-
-    <developers>
-        <developer>
-            <name>Jan-Terje Sørensen</name>
-            <email>jtbsorensen@gmail.com</email>
-        </developer>
-    </developers>
-
+    <dependencies>
+       <!-- <dependency>
+            <groupId>no.jansoren</groupId>
+            <artifactId>mymicroservice-server</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <classifier>classes</classifier>
+        </dependency>-->
+    </dependencies>
 </project>
