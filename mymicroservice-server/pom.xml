@@ -186,7 +186,7 @@
                 <version>1.0.0-SNAPSHOT</version>
                 <configuration>
                     <packageToScan>no.jansoren</packageToScan>
-                    <generatedCodeFolder>/target-folder</generatedCodeFolder>
+                    <generatedCodeFolder>../akka-persistren/target-folder</generatedCodeFolder>
                 </configuration>
                 <executions>
                     <execution>
