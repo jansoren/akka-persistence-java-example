@@ -15,11 +15,22 @@
     <name>Mymicroservice Qualitytests</name>
 
     <dependencies>
-       <!-- <dependency>
+       <dependency>
             <groupId>no.jansoren</groupId>
             <artifactId>mymicroservice-server</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <classifier>classes</classifier>
-        </dependency>-->
+        </dependency>
+        <dependency>
+            <groupId>no.bouvet</groupId>
+            <artifactId>json-client</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
