@@ -1,9 +1,12 @@
 package no.jansoren.mymicroservice.qtest.services;
 
-import java.lang.String;
+import javax.ws.rs.core.Response;
+import no.bouvet.jsonclient.JsonClient;
 
 public class MymicroserviceService {
-  public String welcomeMessage() {
-    return "http://localhost:8080/could not find classpath";
+  private final JsonClient jsonClient = new JsonClient();
+
+  public Response welcomeMessage() {
+    return jsonClient.http().get("http://localhost:8080/").object(Response.class);
   }
 }

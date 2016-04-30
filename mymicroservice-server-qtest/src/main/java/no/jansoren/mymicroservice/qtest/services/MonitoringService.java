@@ -1,9 +1,12 @@
 package no.jansoren.mymicroservice.qtest.services;
 
-import java.lang.String;
+import javax.ws.rs.core.Response;
+import no.bouvet.jsonclient.JsonClient;
 
 public class MonitoringService {
-  public String getEventLog() {
-    return "http://localhost:8080/monitoring/eventlog";
+  private final JsonClient jsonClient = new JsonClient();
+
+  public Response getEventLog() {
+    return jsonClient.http().get("http://localhost:8080/monitoring/eventlog").object(Response.class);
   }
 }
