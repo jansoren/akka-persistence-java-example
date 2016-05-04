@@ -21,9 +21,9 @@ public class MonitoringResource {
 
     @GET
     @Path("/eventlog")
-    public Response getEventLog() {
+    public List<String> getEventLog() {
         EventLogProjection projection = eventStore.getProjection(EventLogProjection.class);
         List<String> eventLog = projection.getEventLog();
-        return Response.ok(eventLog).build();
+        return eventLog;
     }
 }

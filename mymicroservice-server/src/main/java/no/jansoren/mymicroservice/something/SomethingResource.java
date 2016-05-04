@@ -27,10 +27,10 @@ public class SomethingResource {
 
     @GET
     @Path("/get")
-    public Response getSomething() {
+    public Integer getSomething() {
         SomethingProjection projection = eventStore.getProjection(SomethingProjection.class);
         int somethingDoneCounter = projection.getSomethingDoneCounter();
-        return Response.ok(somethingDoneCounter).build();
+        return somethingDoneCounter;
     }
 
 }

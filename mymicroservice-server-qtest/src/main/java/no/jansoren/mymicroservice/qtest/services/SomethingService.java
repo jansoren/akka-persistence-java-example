@@ -1,5 +1,6 @@
 package no.jansoren.mymicroservice.qtest.services;
 
+import java.lang.Integer;
 import javax.ws.rs.core.Response;
 import no.bouvet.jsonclient.JsonClient;
 
@@ -10,7 +11,7 @@ public class SomethingService {
     return jsonClient.http().get("http://localhost:8080/something/do").object(Response.class);
   }
 
-  public Response getSomething() {
-    return jsonClient.http().get("http://localhost:8080/something/get").object(Response.class);
+  public Integer getSomething() {
+    return jsonClient.http().get("http://localhost:8080/something/get").object(Integer.class);
   }
 }

@@ -27,9 +27,9 @@ public class SomethingElseResource {
 
     @GET
     @Path("/get")
-    public Response getSomethingElse() {
+    public Integer getSomethingElse() {
         SomethingElseProjection projection = eventStore.getProjection(SomethingElseProjection.class);
         int somethingElseDoneCounter = projection.getSomethingElseDoneCounter();
-        return Response.ok(somethingElseDoneCounter).build();
+        return somethingElseDoneCounter;
     }
 }
