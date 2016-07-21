@@ -1,17 +1,27 @@
 package no.jansoren.mymicroservice.qtest.services;
 
 import java.lang.Integer;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import no.bouvet.jsonclient.JsonClient;
 
 public class SomethingService {
-  private final JsonClient jsonClient = new JsonClient();
+  private WebTarget target;
+
+  public SomethingService() {
+    Client client = ClientBuilder.newClient();
+    target = client.target("http://localhost:8080").path("/something");
+  }
 
   public Response doSomething() {
-    return jsonClient.http().get("http://localhost:8080/something/do").object(Response.class);
+    Response response = target.path("/do").request(MediaType.APPLICATION_JSON_TYPE).get();
+    return (Response)response.getEntity();
   }
 
   public Integer getSomething() {
-    return jsonClient.http().get("http://localhost:8080/something/get").object(Integer.class);
+    Response response = target.path("/get").request(MediaType.APPLICATION_JSON_TYPE).get();
+    return (Integer)response.getEntity();
   }
 }
