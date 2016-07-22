@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.core.Response;
+
 public class SomethingTest {
 
 
@@ -16,8 +18,14 @@ public class SomethingTest {
     }
 
     @Test
-    public void testSomething() {
+    public void testGetSomething() {
         Integer something = service.getSomething();
         Assert.assertNotNull(something);
+    }
+
+    @Test
+    public void testDoSomething() {
+        Response something = service.doSomething();
+        Assert.assertNull(something);
     }
 }

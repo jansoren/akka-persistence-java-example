@@ -17,11 +17,11 @@ public class SomethingService {
 
   public Response doSomething() {
     Response response = target.path("/do").request(MediaType.APPLICATION_JSON_TYPE).get();
-    return (Response)response.getEntity();
+    return response.readEntity(Response.class);
   }
 
   public Integer getSomething() {
     Response response = target.path("/get").request(MediaType.APPLICATION_JSON_TYPE).get();
-    return (Integer)response.getEntity();
+    return response.readEntity(Integer.class);
   }
 }

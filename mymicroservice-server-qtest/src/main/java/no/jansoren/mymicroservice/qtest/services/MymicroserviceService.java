@@ -17,6 +17,6 @@ public class MymicroserviceService {
 
   public String welcomeMessage() {
     Response response = target.path("").request(MediaType.APPLICATION_JSON_TYPE).get();
-    return (String)response.getEntity();
+    return response.readEntity(String.class);
   }
 }

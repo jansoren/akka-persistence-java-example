@@ -17,6 +17,6 @@ public class MonitoringService {
 
   public List getEventLog() {
     Response response = target.path("/eventlog").request(MediaType.APPLICATION_JSON_TYPE).get();
-    return (List)response.getEntity();
+    return response.readEntity(List.class);
   }
 }
