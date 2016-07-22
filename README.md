@@ -11,9 +11,9 @@ a pull request. Enjoy :-)
 ## How to start the Mymicroservice application
 
 1. Clone the [restapi-codegen-maven-plugin](https://github.com/jansoren/restapi-codegen-maven-plugin) repo `git clone git@github.com:jansoren/restapi-codegen-maven-plugin.git`
-1. Run `mvn clean install` in the 'restapi-codegen-maven-plugin'-folder
+1. Run `mvn clean install` in the `/restapi-codegen-maven-plugin`-folder
 1. Then clone this repo `git clone git@github.com:jansoren/akka-persistence-java-example.git`
-1. Run `mvn clean install` in the `akka-persistence-java-example/tree/master/mymicroservice-server`-folder
+1. Run `mvn clean install` in the `/akka-persistence-java-example/mymicroservice-server`-folder
 1. Start application with `java -jar target/mymicroservice-server-1.0.0-SNAPSHOT.jar server config.yml`
 1. To check that your application is running enter url [http://localhost:8080](http://localhost:8080)
 
