@@ -21,7 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mainClass>no.jansoren.mymicroservice.MymicroserviceApplication</mainClass>
 
-        <akka.version>2.4.8</akka.version>
+        <akka.version>2.4.9-RC2</akka.version>
         <dropwizard.version>1.0.0</dropwizard.version>
         <junit.version>4.12</junit.version>
         <leveldb.version>0.9</leveldb.version>
