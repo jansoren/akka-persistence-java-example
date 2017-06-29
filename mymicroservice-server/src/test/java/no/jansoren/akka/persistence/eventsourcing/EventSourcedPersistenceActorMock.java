@@ -1,5 +1,7 @@
 package no.jansoren.akka.persistence.eventsourcing;
 
+import akka.actor.AbstractActor;
+import akka.japi.pf.ReceiveBuilder;
 import akka.japi.pf.UnitPFBuilder;
 import scala.PartialFunction;
 import scala.runtime.BoxedUnit;
@@ -11,7 +13,7 @@ public class EventSourcedPersistenceActorMock extends EventSourcedPersistenceAct
     }
 
     @Override
-    protected PartialFunction<Object, BoxedUnit> buildReceiver(UnitPFBuilder<Object> defaultMatches) {
+    protected Receive buildReceiver(ReceiveBuilder defaultMatches) {
         return defaultMatches.build();
     }
 }

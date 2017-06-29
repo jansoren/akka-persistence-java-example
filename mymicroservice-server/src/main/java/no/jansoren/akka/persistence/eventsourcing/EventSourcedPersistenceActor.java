@@ -24,23 +24,23 @@ public abstract class EventSourcedPersistenceActor extends AbstractPersistentAct
     }
 
     @Override
-    public PartialFunction<Object, BoxedUnit> receiveRecover() {
+    public Receive createReceiveRecover() {
         LOG.debug("receiveRecover");
-        UnitPFBuilder<Object> defaultMatches = getDefaultMatches();
+        ReceiveBuilder defaultMatches = getDefaultMatches();
         return buildReceiver(defaultMatches);
     }
 
     @Override
-    public PartialFunction<Object, BoxedUnit> receiveCommand() {
+    public Receive createReceive() {
         LOG.debug("receiveCommand");
-        UnitPFBuilder<Object> defaultMatches = getDefaultMatches();
+        ReceiveBuilder defaultMatches = getDefaultMatches();
         return buildReceiver(defaultMatches);
     }
 
-    protected abstract PartialFunction<Object, BoxedUnit> buildReceiver(UnitPFBuilder<Object> defaultMatches);
+    protected abstract Receive buildReceiver(ReceiveBuilder defaultMatches);
 
-    private UnitPFBuilder<Object>  getDefaultMatches() {
-        return ReceiveBuilder
+    private ReceiveBuilder getDefaultMatches() {
+        return receiveBuilder()
                 .match(IsRunning.class, this::handleCommand)
                 .match(Shutdown.class, this::handleCommand);
     }

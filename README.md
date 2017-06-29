@@ -20,3 +20,7 @@ a pull request. Enjoy :-)
 ## Health Check
 
 To see your applications health enter url [http://localhost:8081](http://localhost:8081)
+
+## Setup in intellij
+
+![intellij-setup](https://user-images.githubusercontent.com/1298854/27704806-0ecc4e48-5d0c-11e7-9d1e-256da9878f83.jpg)

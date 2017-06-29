@@ -21,9 +21,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mainClass>no.jansoren.mymicroservice.MymicroserviceApplication</mainClass>
 
-        <akka.version>2.4.16</akka.version>
-        <akka-persistence-query-experimental.version>2.4.16</akka-persistence-query-experimental.version>
-        <dropwizard.version>1.1.1</dropwizard.version>
+        <akka.version>2.5.3</akka.version>
+        <akka-persistence-query-experimental.version>2.4.19</akka-persistence-query-experimental.version>
+        <dropwizard.version>1.1.2</dropwizard.version>
         <junit.version>4.12</junit.version>
         <leveldb.version>0.9</leveldb.version>
         <leveldbjni-all.version>1.8</leveldbjni-all.version>
@@ -40,7 +40,7 @@
         <maven-site-plugin.version>3.6</maven-site-plugin.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-        <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.4</versions-maven-plugin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -69,6 +69,12 @@
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-slf4j_2.11</artifactId>
             <version>${akka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-testkit_2.11</artifactId>
+            <version>${akka.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

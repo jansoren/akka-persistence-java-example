@@ -27,7 +27,7 @@ public class MymicroservicePersistenceActor extends EventSourcedPersistenceActor
     }
 
     @Override
-    protected PartialFunction<Object, BoxedUnit> buildReceiver(UnitPFBuilder<Object> defaultMatches) {
+    protected Receive buildReceiver(ReceiveBuilder defaultMatches) {
         return defaultMatches
                 .match(ApplicationIsStartingCommand.class, this::handleCommand)
                 .match(DoSomethingCommand.class, this::handleCommand)
