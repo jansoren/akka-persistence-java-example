@@ -42,10 +42,7 @@ public class MymicroserviceApplication extends Application<MymicroserviceConfigu
 
         environment.lifecycle().manage(new ShutdownManager(eventStore));
 
-        environment.jersey().register(new MymicroserviceResource(getName()));
-        environment.jersey().register(new MonitoringResource(eventStore));
-        environment.jersey().register(new SomethingResource(eventStore));
-        environment.jersey().register(new SomethingElseResource(eventStore));
+        environment.jersey().packages(getClass().getPackage().getName());
 
         eventStore.tell(new ApplicationIsStartingCommand(), null);
     }
