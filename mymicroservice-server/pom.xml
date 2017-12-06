@@ -191,10 +191,11 @@
             <plugin>
                 <groupId>no.jansoren</groupId>
                 <artifactId>restapi-codegen-maven-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>1.0.3-SNAPSHOT</version>
                 <configuration>
-                    <generatedCodeFolder>../mymicroservice-server-qtest/src/main/java</generatedCodeFolder>
-                    <generatedCodePackage>no.jansoren.mymicroservice.qtest.services</generatedCodePackage>
+                    <generatedJavaCodeFolder>../mymicroservice-server-qtest/src/main/java</generatedJavaCodeFolder>
+                    <generatedJavaCodePackage>no.jansoren.mymicroservice.qtest.services</generatedJavaCodePackage>
+					<generatedReactCodeFolder>../mymicroservice-client/src/services</generatedReactCodeFolder>
                     <rootHost>http://localhost:8080</rootHost>
                 </configuration>
                 <executions>
